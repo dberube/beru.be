@@ -5,8 +5,44 @@ import { getLiveCollection, isoDate } from '../../lib/content';
 const entries = await getLiveCollection('now');
 const current = entries.find((entry) => entry.id === 'current');
 if (!current) throw new Error('Missing src/content/now/current.md');
-const archives = entries.filter((entry) => entry.id.startsWith('archive/')).sort((a,b)=>b.data.updated.valueOf()-a.data.updated.valueOf());
+const archives = entries
+  .filter((entry) => entry.id.startsWith('archive/'))
+  .sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
 const { Content } = await render(current);
 const title = current.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) + '.';
 ---
-<BaseLayout title="Now" description="What David Berube is focused on now." path="/now/" image="/og/now.png"><article><div class="kicker">NOW</div><h1 style="margin-top:10px">{title}</h1><div class="prose"><Content /></div><p class="lede" style="color:var(--muted)">now page / last updated <time datetime={isoDate(current.data.updated)}>{isoDate(current.data.updated)}</time></p>{archives.length > 0 && <section class="section">{archives.map((entry)=>{ const slug = entry.id.replace('archive/',''); const label = entry.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) + '.'; return <a class="list-row" href={`/now/${slug}/`}><div class="gutter"><strong>{slug.slice(0,4)}</strong><time datetime={isoDate(entry.data.updated)}>{slug}</time></div><div><h2 class="entry-title">{label}</h2><p class="entry-desc">Archived now entry.</p></div></a>; })}</section>}</article></BaseLayout>
+<BaseLayout title="Now" description="What David Berube is focused on now." path="/now/" image="/og/now.png">
+  <article>
+    <div class="kicker">NOW</div>
+    <h1 style="margin-top:10px">{title}</h1>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    <p class="lede" style="color:var(--muted)">
+      now page / last updated <time datetime={isoDate(current.data.updated)}>{isoDate(current.data.updated)}</time>
+    </p>
+
+    {archives.length > 0 && (
+      <section class="section">
+        {archives.map((entry) => {
+          const slug = entry.id.replace('archive/', '');
+          const label = entry.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) + '.';
+          return (
+            <a class="list-row" href={`/now/${slug}/`}>
+              <div class="gutter">
+                <strong>{slug.slice(0, 4)}</strong>
+                <time datetime={isoDate(entry.data.updated)}>{slug}</time>
+              </div>
+              <div>
+                <h2 class="entry-title">{label}</h2>
+                <p class="entry-desc">Archived now entry.</p>
+              </div>
+            </a>
+          );
+        })}
+      </section>
+    )}
+  </article>
+</BaseLayout>

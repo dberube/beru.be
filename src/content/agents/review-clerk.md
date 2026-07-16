@@ -6,5 +6,5 @@ stack: ["GitHub", "LLM", "Static analysis"]
 status: wip
 runs_on: "GitHub Actions"
 screenshot: "../../assets/screenshots/placeholder.png"
-draft: false
+draft: true
 ---

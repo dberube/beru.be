@@ -5,5 +5,5 @@ date: 2026-02-18
 stack: ["Astro", "Markdown", "RSS"]
 status: wip
 screenshot: "../../assets/screenshots/placeholder.png"
-draft: false
+draft: true
 ---

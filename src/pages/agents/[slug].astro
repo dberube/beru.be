@@ -3,8 +3,43 @@ import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Screenshot from '../../components/Screenshot.astro';
 import { getLiveCollection, number, ogFor, stackLine, hasBody } from '../../lib/content';
-export async function getStaticPaths(){ const agents = (await getLiveCollection('agents')).filter(hasBody); return agents.map((agent,i)=>({params:{slug:agent.id},props:{agent,index:i}})); }
+
+export async function getStaticPaths() {
+  const agents = (await getLiveCollection('agents')).filter(hasBody);
+  return agents.map((agent, i) => ({
+    params: { slug: agent.id },
+    props: { agent, index: i }
+  }));
+}
+
 const { agent, index } = Astro.props;
 const { Content } = await render(agent);
 ---
-<BaseLayout title={agent.data.name} description={agent.data.summary} path={`/agents/${agent.id}/`} image={ogFor(`agents-${agent.id}`)}><article><div class="article-grid"><div class="gutter"><strong>{number(index)}</strong><span class="type-label">{agent.data.status.toUpperCase()}</span></div><div><h1>{agent.data.name}</h1><p class="stack">{stackLine(agent.data.stack)}</p><p class="lede">{agent.data.summary}</p>{agent.data.runs_on && <p class="serif-lede" style="font-style:italic;color:var(--accent);font-size:17px">runs on: {agent.data.runs_on}</p>}<Screenshot src={agent.data.screenshot} alt={`${agent.data.name} screenshot`} caption={`${agent.data.name} screenshot placeholder`} /></div><div class="article-body prose"><Content /></div></div></article></BaseLayout>
+<BaseLayout title={agent.data.name} description={agent.data.summary} path={`/agents/${agent.id}/`} image={ogFor(`agents-${agent.id}`)}>
+  <article>
+    <div class="article-grid">
+      <div class="gutter">
+        <strong>{number(index)}</strong>
+        <span class="type-label">{agent.data.status.toUpperCase()}</span>
+      </div>
+
+      <div>
+        <h1>{agent.data.name}</h1>
+        <p class="stack">{stackLine(agent.data.stack)}</p>
+        <p class="lede">{agent.data.summary}</p>
+        {agent.data.runs_on && (
+          <p class="serif-lede" style="font-style:italic;color:var(--accent);font-size:17px">runs on: {agent.data.runs_on}</p>
+        )}
+        <Screenshot
+          src={agent.data.screenshot}
+          alt={`${agent.data.name} screenshot`}
+          caption={`${agent.data.name} screenshot`}
+        />
+      </div>
+
+      <div class="article-body prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

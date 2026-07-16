@@ -4,4 +4,19 @@ import IndexedRow from '../../components/IndexedRow.astro';
 import { getLiveCollection, number, shortDate } from '../../lib/content';
 const essays = await getLiveCollection('writing');
 ---
-<BaseLayout title="Writing" description="Essays by David Berube." path="/writing/" image="/og/writing.png"><h1>Writing.</h1><p class="lede">Essays, newest first. Product work, judgment, and systems that should have been smaller.</p><section class="section">{essays.map((essay,i)=><IndexedRow number={number(i)} meta={shortDate(essay.data.date)} title={essay.data.title} summary={essay.data.summary} href={`/writing/${essay.id}/`} />)}</section></BaseLayout>
+<BaseLayout title="Writing" description="Essays by David Berube." path="/writing/" image="/og/writing.png">
+  <h1>Writing.</h1>
+  <p class="lede">What I’ve learned building products, leading teams, and trying new things before the playbook exists.</p>
+
+  <section class="section">
+    {essays.map((essay, i) => (
+      <IndexedRow
+        number={number(i)}
+        meta={shortDate(essay.data.date)}
+        title={essay.data.title}
+        summary={essay.data.summary}
+        href={`/writing/${essay.id}/`}
+      />
+    ))}
+  </section>
+</BaseLayout>

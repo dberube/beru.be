@@ -2,8 +2,34 @@
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getLiveCollection, number, shortDate, isoDate, ogFor } from '../../lib/content';
-export async function getStaticPaths(){ const essays = await getLiveCollection('writing'); return essays.map((essay,i)=>({params:{slug:essay.id},props:{essay,index:i}})); }
+
+export async function getStaticPaths() {
+  const essays = await getLiveCollection('writing');
+  return essays.map((essay, i) => ({
+    params: { slug: essay.id },
+    props: { essay, index: i }
+  }));
+}
+
 const { essay, index } = Astro.props;
 const { Content } = await render(essay);
 ---
-<BaseLayout title={essay.data.title} description={essay.data.summary} path={`/writing/${essay.id}/`} image={ogFor(`writing-${essay.id}`)} type="article"><article><div class="article-grid"><div class="gutter"><strong>{number(index)}</strong><time datetime={isoDate(essay.data.date)}>{shortDate(essay.data.date)}</time></div><div><h1>{essay.data.title}</h1><p class="lede">{essay.data.summary}</p></div><div class="article-body prose"><Content /></div></div></article></BaseLayout>
+<BaseLayout title={essay.data.title} description={essay.data.summary} path={`/writing/${essay.id}/`} image={ogFor(`writing-${essay.id}`)} type="article">
+  <article>
+    <div class="article-grid">
+      <div class="gutter">
+        <strong>{number(index)}</strong>
+        <time datetime={isoDate(essay.data.date)}>{shortDate(essay.data.date)}</time>
+      </div>
+
+      <div>
+        <h1>{essay.data.title}</h1>
+        <p class="lede" style="color:var(--muted); font-style: italic;">{essay.data.summary}</p>
+      </div>
+
+      <div class="article-body prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

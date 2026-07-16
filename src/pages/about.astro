@@ -1,10 +1,144 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../site';
 const releases = [
-  ['v4.0','2026—Now','CURRENT','Building agentic systems and small public tools from a homelab-shaped operating base.'],
-  ['v3.0','2023—2026','PM FUNCTION','Built a product management function from scratch at [COMPANY].'],
-  ['v2.0','2020—2023','ACQUIRED','Founded and exited [COMPANY], mostly by making the useful part obvious.'],
-  ['v1.0','Earlier','SERIES A','Worked across product, operations, and the unglamorous middle of software delivery.']
+
+  [
+    'v7.0', 
+    '2024—Now', 
+    'Merck Group (MilliporeSigma)',
+    'Group Product Lead',
+    'CURRENT — Fortune 100', 
+    'Lead eCommerce product at MilliporeSigma, shaping the digital purchasing experience for life science customers across a multibillion-dollar global business.'
+  ],
+
+  [
+    'v6.0', 
+    '2017-2024', 
+    'UNFI',
+    'Senior Director, Product Management & AI',
+    'Fortune 200', 
+    'Held senior product and innovation leadership roles at UNFI, leading the development of enterprise commerce platforms, new digital businesses, retail media, and AI capabilities serving thousands of retailers and supporting billions of dollars in annual commerce.'
+  ],
+
+  [
+    'v5.0', 
+    '2016—2017', 
+    'WorldBrain, Inc.',
+    'Founder & Chief Product Officer',
+    'SERIES A STARTUP', 
+    'Co-founded WorldBrain and served as Chief Product Officer, building an AI platform designed to predict consumer intent and help brands identify and activate high-value audiences.'
+  ],
+
+  [
+    'v4.0', 
+    '2012-2016', 
+    'MojoTech, Inc.',
+    'Vice President & Partner',
+    'DIGITAL PRODUCT AGENCY', 
+    'Served as Vice President and Partner at MojoTech, helping lead the agency while advising clients on product strategy, innovation, and the design and development of complex digital products.'
+  ],
+
+  [
+    'v3.0', 
+    '2007—2012', 
+    'MoFuse, Inc.',
+    'Founder & Chief Product Officer',
+    'SERIES B STARTUP — ACQUIRED', 
+    'Founded and built MoFuse, a venture-backed platform that made it easy for businesses to create and manage mobile optimized websites and apps without technical expertise. MoFuse grew to tens of thousands of customers worldwide and was later acquired.'
+  ],
+
+  [
+    'v2.0', 
+    '2003—2006', 
+    'Yutter',
+    'Founder',
+    'SEED STARTUP', 
+    'Founded and built Yutter, a content distribution platform that automatically delivered newly published blog posts and articles directly to readers’ inboxes.'
+  ],
+
+  [
+    'v1.0', 
+    '2000-2002', 
+    'Wireless-IM.com',
+    'Founder',
+    'SEED STARTUP', 
+    'Founded and built Wireless-IM.com, an early web-based messaging product that let people send text messages from their computer directly to mobile phones.'
+  ]
+
 ];
 ---
-<BaseLayout title="About" description="About David Berube." path="/about/" image="/og/about.png"><h1>About.</h1><div class="prose"><p>David Berube works at the edge of product judgment, software delivery, and practical automation. The through-line is making complex systems legible enough to change.</p><p>This site is a public notebook for builds, essays, and agents worth keeping.</p></div><section class="section">{releases.map(([version,years,status,note])=><div class="list-row"><div class="gutter"><strong>{version}</strong><span>{years}</span></div><div><span class="release-status">{status}</span><p class="entry-desc">{note}</p></div></div>)}</section><p class="lede"><a href="https://www.linkedin.com/in/davidberube/">Full history on LinkedIn →</a></p><p class="serif-lede" style="font-style:italic">The personal line goes here; it should stay quieter than the work.</p><p class="lede" style="color:var(--muted)">Advisory note: this page uses placeholders David will replace with exact company names and dates.</p></BaseLayout>
+<BaseLayout title="About" description="About David Berube." path="/about/" image="/og/about.png">
+  <h1>About.</h1>
+
+  <div class="prose">
+    <p>I’m David Berube, a product executive and hands-on builder with more than 20 years of experience creating, launching, and scaling digital products.</p>
+
+    <p>I’ve led product and innovation inside some of the world’s largest companies, building enterprise platforms and new commercial capabilities used by millions of customers and responsible for billions of dollars in commerce.</p>
+
+    <p>But I’ve never wanted to lead innovation from a distance.</p>
+
+    <p>I stay close to the craft, shaping the idea, understanding the customer, making the difficult product decisions, and rapidly building working products myself. That combination of enterprise experience and hands-on execution allows me to move between strategy and detail without losing sight of either.</p>
+
+    <h2>Enterprise Judgment. Builder Speed.</h2>
+    
+    <p>My career has taken me across venture-backed startups, product consulting, and Fortune 100 scale organizations. I’ve modernized complex customer experiences, launched new digital businesses, built enterprise commerce platforms, and introduced emerging technologies into environments where scale, reliability, and measurable outcomes matter.</p>
+
+    <p>Those experiences taught me how to operate through complexity, how to find the real opportunity, create clarity from ambiguity, align teams around a strong product direction, and turn that direction into results.</p>
+
+    <p>The best product leaders know how products get built, and have the taste to know what belongs, what doesn’t, and where the right details can create delight, differentiation, and better outcomes.</p>
+
+    <h2>I Still Build.</h2>
+
+    <p>Outside of my enterprise work, I design and build products, prototypes, and AI agents of my own.</p>
+
+    <p>I do it because building sharpens product judgment. It forces ideas to confront real constraints. It reveals whether an experience is intuitive, whether the value is clear, and whether something is genuinely useful or merely sounds compelling.</p>
+
+    <p>The tools have changed dramatically, but the craft has not. Good products still require curiosity, taste, speed, commercial understanding, and the discipline to simplify.</p>
+
+    <p>Building personally keeps me close to that craft and lets me explore new ideas and technologies at a speed that would have been impossible only a few years ago.</p>
+
+    <h2>How I Lead.</h2>
+
+    <p>I start by getting clear on the customer problem and the business opportunity. Then I develop a point of view. I don’t believe a product leader’s job is to simply facilitate consensus, manage a roadmap, or accept every request. The job is to make choices, create clarity, raise the quality bar, and focus teams on the work most likely to matter.</p>
+
+    <p>I push teams to move quickly from discussion to something real. Prototype it. Test it. Ship it. Learn from it. <strong>Shorter feedback loops let teams take more swings, learn faster, and improve the odds of finding what actually works.</strong> Working products expose weak assumptions and create better conversations than another deck or product brief ever will.</p>
+
+    <p>But speed without judgment just creates more software. I stay close to the details, challenge ideas that aren’t strong enough, and care about the parts of an experience customers feel even when they can’t name them.</p>
+
+    <p>The goal isn’t to ship the most. It’s to build the right things, and build them well enough to create delight, differentiation, and measurable outcomes.</p>
+
+    <h2>Beyond My Work.</h2>
+
+    <p>I live in Massachusetts and am the father of two amazing daughters. Away from work, I’m usually at a softball/soccer field, a swim meet, in the gym, or reading about technology, geopolitics, and whatever might be worth building next.</p>
+  </div>
+
+  <h2 style="margin: 48px 0 -20px 0;">Roles I've Held.</h2>
+
+  <section class="section">
+
+    {releases.map(([version, years, company, title, status, note]) => (
+      <div class="list-row">
+        <div class="gutter">
+          {/* <strong>{version}</strong> */}
+          <span>{years}</span>
+        </div>
+        <div>
+          
+          <span class="release-status">{status}</span>
+          <h3 style="margin: 12px 0 0;">{company}</h3>
+          <p style="margin: 4px 0 18px 0; letter-spacing: .04em; color:var(--muted); font-size: 90%; font-weight: 100;" >{title}</p>
+          
+
+          <p class="entry-desc">{note}</p>
+        </div>
+      </div>
+    ))}
+  </section>
+
+  <p class="lede">
+    <a href={site.linkedin}>Full history on LinkedIn →</a>
+  </p>
+
+  <p class="serif-lede" style="font-style:italic">"Delight your customers in hard-to-copy, margin enhancing ways" - Gibson Biddle</p>
+</BaseLayout>

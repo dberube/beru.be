@@ -3,7 +3,7 @@ title: "What building side projects taught me about product judgment"
 summary: "Small software makes weak assumptions expensive immediately."
 date: 2026-05-03
 type: essay
-draft: false
+draft: true
 ---
 
 Side projects compress the feedback loop. There is no research department, no launch calendar, and no one to blame when the thing is confusing.

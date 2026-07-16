@@ -1,9 +1,9 @@
 ---
-title: "How to PM in a large enterprise in 2026"
-summary: "The work is less about owning a roadmap and more about making constrained choices legible."
-date: 2026-06-14
+title: "An Experiment in Sharing More"
+summary: "I’ve spent years building and leading, I haven’t shared enough of it, and this site is an experiment in changing that."
+date: 2026-07-16
 type: essay
-draft: false
+draft: true
 ---
 
 Enterprise product work is mostly translation. The useful PM turns policy, risk, operations, and technical constraint into a decision that can survive contact with procurement.
