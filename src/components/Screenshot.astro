@@ -1,0 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import placeholder from '../assets/screenshots/placeholder.png';
+interface Props { src?: ImageMetadata; alt?: string; caption: string; }
+const { src, alt = '', caption } = Astro.props;
+---
+<figure class="screenshot">{src ? <Image src={src} alt={alt} width={960} height={540} loading="lazy" /> : <div class="caption">{caption}</div>}</figure>{src && <div class="caption">{caption}</div>}

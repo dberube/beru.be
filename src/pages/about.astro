@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const releases = [
+  ['v4.0','2026—Now','CURRENT','Building agentic systems and small public tools from a homelab-shaped operating base.'],
+  ['v3.0','2023—2026','PM FUNCTION','Built a product management function from scratch at [COMPANY].'],
+  ['v2.0','2020—2023','ACQUIRED','Founded and exited [COMPANY], mostly by making the useful part obvious.'],
+  ['v1.0','Earlier','SERIES A','Worked across product, operations, and the unglamorous middle of software delivery.']
+];
+---
+<BaseLayout title="About" description="About David Berube." path="/about/" image="/og/about.png"><h1>About.</h1><div class="prose"><p>David Berube works at the edge of product judgment, software delivery, and practical automation. The through-line is making complex systems legible enough to change.</p><p>This site is a public notebook for builds, essays, and agents worth keeping.</p></div><section class="section">{releases.map(([version,years,status,note])=><div class="list-row"><div class="gutter"><strong>{version}</strong><span>{years}</span></div><div><span class="release-status">{status}</span><p class="entry-desc">{note}</p></div></div>)}</section><p class="lede"><a href="https://www.linkedin.com/in/davidberube/">Full history on LinkedIn →</a></p><p class="serif-lede" style="font-style:italic">The personal line goes here; it should stay quieter than the work.</p><p class="lede" style="color:var(--muted)">Advisory note: this page uses placeholders David will replace with exact company names and dates.</p></BaseLayout>

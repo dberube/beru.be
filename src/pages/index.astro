@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IndexedRow from '../components/IndexedRow.astro';
+import { getLiveCollection, byFreshnessDesc, number, hasBody } from '../lib/content';
+import { site } from '../site';
+const [builds, agents, writing] = await Promise.all([getLiveCollection('builds'), getLiveCollection('agents'), getLiveCollection('writing')]);
+const items = [
+  ...builds.map((e)=>({entry:e,type:'BUILD',title:e.data.name,href:hasBody(e)?`/builds/${e.id}/`:e.data.url ?? `/builds/${e.id}/`})),
+  ...agents.map((e)=>({entry:e,type:'AGENT',title:e.data.name,href:hasBody(e)?`/agents/${e.id}/`:e.data.url ?? `/agents/${e.id}/`})),
+  ...writing.map((e)=>({entry:e,type:'ESSAY',title:e.data.title,href:`/writing/${e.id}/`}))
+].sort((a,b)=>byFreshnessDesc(a.entry,b.entry)).slice(0,5);
+---
+<BaseLayout title="David Berube" path="/" image="/og/site.png"><section class="home"><h1>Commercial product leader who builds.</h1><p class="lede">David Berube works in B2B life sciences product by day, then ships side projects, tools, and agents with visible proof.</p><div class="section">{items.map((item,i)=><IndexedRow number={number(i)} meta={item.type} title={item.title} summary={item.entry.data.summary} href={item.href} arrow />)}</div><div class="cta"><a class="button" href={`mailto:${site.email}`}>Email David</a><a href={site.linkedin}>LinkedIn ↗</a></div></section></BaseLayout>

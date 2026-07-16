@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IndexedRow from '../../components/IndexedRow.astro';
+import Screenshot from '../../components/Screenshot.astro';
+import { getLiveCollection, number, stackLine, hasBody } from '../../lib/content';
+const agents = await getLiveCollection('agents');
+---
+<BaseLayout title="Agents" description="Systems working for David Berube." path="/agents/" image="/og/agents.png"><h1>Agents.</h1><p class="serif-lede">Agentic systems are useful when they remove recurring operational drag, not when they perform autonomy for its own sake. The interesting ones leave receipts.</p><section class="section">{agents.map((agent,i)=><IndexedRow number={number(i)} meta={agent.data.status.toUpperCase()} title={agent.data.name} summary={agent.data.summary} href={hasBody(agent)?`/agents/${agent.id}/`:agent.data.url} stack={stackLine(agent.data.stack)}>{agent.data.runs_on && <p class="serif-lede" style="font-style:italic;color:var(--accent);font-size:17px;margin:10px 0 0">runs on: {agent.data.runs_on}</p>}<Screenshot src={agent.data.screenshot} alt={`${agent.data.name} screenshot`} caption={`${agent.data.name} screenshot placeholder`} /></IndexedRow>)}</section></BaseLayout>

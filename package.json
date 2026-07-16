@@ -1,0 +1,1 @@
+{"scripts":{"dev":"astro dev --host 0.0.0.0","build":"node scripts/generate-og.mjs && astro build","preview":"astro preview --host 0.0.0.0","check":"astro check"},"dependencies":{"@astrojs/rss":"latest","@astrojs/sitemap":"latest","astro":"latest","sharp":"latest"},"devDependencies":{"typescript":"latest"},"engines":{"node":">=20"},"type":"module"}

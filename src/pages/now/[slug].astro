@@ -1,0 +1,14 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLiveCollection, isoDate, ogFor } from '../../lib/content';
+export async function getStaticPaths(){
+  const entries = (await getLiveCollection('now')).filter((entry)=>entry.id.startsWith('archive/'));
+  return entries.map((entry)=>({params:{slug:entry.id.replace('archive/','')},props:{entry}}));
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const slug = entry.id.replace('archive/','');
+const title = entry.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) + '.';
+---
+<BaseLayout title={title} description="Archived now entry by David Berube." path={`/now/${slug}/`} image={ogFor(`now-${slug}`)}><article><div class="kicker">NOW ARCHIVE</div><h1 style="margin-top:10px">{title}</h1><div class="prose"><Content /></div><p class="lede" style="color:var(--muted)">now page / last updated <time datetime={isoDate(entry.data.updated)}>{isoDate(entry.data.updated)}</time></p></article></BaseLayout>

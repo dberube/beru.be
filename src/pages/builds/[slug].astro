@@ -1,0 +1,10 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Screenshot from '../../components/Screenshot.astro';
+import { getLiveCollection, number, ogFor, stackLine, hasBody } from '../../lib/content';
+export async function getStaticPaths(){ const builds = (await getLiveCollection('builds')).filter(hasBody); return builds.map((build,i)=>({params:{slug:build.id},props:{build,index:i}})); }
+const { build, index } = Astro.props;
+const { Content } = await render(build);
+---
+<BaseLayout title={build.data.name} description={build.data.summary} path={`/builds/${build.id}/`} image={ogFor(`builds-${build.id}`)}><article><div class="article-grid"><div class="gutter"><strong>{number(index)}</strong><span class="type-label">{build.data.status.toUpperCase()}</span></div><div><h1>{build.data.name}</h1><p class="stack">{stackLine(build.data.stack)}</p><p class="lede">{build.data.summary}</p>{build.data.url && <p class="lede"><a href={build.data.url}>Open project ↗</a></p>}<Screenshot src={build.data.screenshot} alt={`${build.data.name} screenshot`} caption={`${build.data.name} screenshot placeholder`} /></div><div class="article-body prose"><Content /></div></div></article></BaseLayout>

@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import IndexedRow from '../../components/IndexedRow.astro';
+import Screenshot from '../../components/Screenshot.astro';
+import { getLiveCollection, number, stackLine, hasBody } from '../../lib/content';
+const builds = await getLiveCollection('builds');
+---
+<BaseLayout title="Builds" description="Small software projects by David Berube." path="/builds/" image="/og/builds.png"><h1>Builds.</h1><p class="lede">Small tools with obvious jobs. No logos required.</p><section class="section">{builds.map((build,i)=><IndexedRow number={number(i)} meta={build.data.status.toUpperCase()} title={build.data.name} summary={build.data.summary} href={hasBody(build)?`/builds/${build.id}/`:build.data.url} stack={stackLine(build.data.stack)}><Screenshot src={build.data.screenshot} alt={`${build.data.name} screenshot`} caption={`${build.data.name} screenshot placeholder`} /></IndexedRow>)}</section></BaseLayout>

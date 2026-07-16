@@ -1,0 +1,6 @@
+---
+interface Props { number: string; meta: string; title: string; summary?: string; href?: string; arrow?: boolean; stack?: string; }
+const { number, meta, title, summary, href, arrow=false, stack } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+<Tag class={arrow ? 'index-row' : 'list-row'} href={href}><div class="gutter"><strong>{number}</strong><span class="type-label">{meta}</span></div><div><div class="entry-head"><h2 class="entry-title">{title}</h2>{stack && <div class="stack">{stack}</div>}</div>{summary && <p class="entry-desc">{summary}</p>}<slot /></div>{arrow && <span class="arrow" aria-hidden="true">→</span>}</Tag>
