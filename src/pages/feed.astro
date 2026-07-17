@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import IndexedRow from '../components/IndexedRow.astro';
+import { getLiveCollection, byFreshnessDesc, number, hasBody } from '../lib/content';
+
+const [builds, agents, writing] = await Promise.all([
+  getLiveCollection('builds'),
+  getLiveCollection('agents'),
+  getLiveCollection('writing'),
+]);
+
+const items = [
+  ...builds.map((entry) => ({
+    entry,
+    type: 'BUILD',
+    title: entry.data.name,
+    href: hasBody(entry) ? `/builds/${entry.id}/` : entry.data.url ?? `/builds/${entry.id}/`,
+  })),
+  ...agents.map((entry) => ({
+    entry,
+    type: 'AGENT',
+    title: entry.data.name,
+    href: hasBody(entry) ? `/agents/${entry.id}/` : entry.data.url ?? `/agents/${entry.id}/`,
+  })),
+  ...writing.map((entry) => ({
+    entry,
+    type: 'ESSAY',
+    title: entry.data.title,
+    href: `/writing/${entry.id}/`,
+  })),
+].sort((a, b) => byFreshnessDesc(a.entry, b.entry));
+---
+<BaseLayout title="Feed" description="Everything David Berube has published, newest first." path="/feed/" image="/og/site.png">
+  <h1>Feed.</h1>
+  <p class="lede">Everything, newest first.</p>
+  <section class="section">
+    {items.map((item, i) => <IndexedRow number={number(i)} meta={item.type} title={item.title} summary={item.entry.data.summary} href={item.href} arrow />)}
+  </section>
+</BaseLayout>
