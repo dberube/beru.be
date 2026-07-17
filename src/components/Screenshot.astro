@@ -1,7 +1,15 @@
 ---
 import { Image } from 'astro:assets';
-import placeholder from '../assets/screenshots/placeholder.png';
-interface Props { src?: ImageMetadata; alt?: string; caption: string; }
-const { src, alt = '', caption } = Astro.props;
+interface Props { src?: ImageMetadata; alt?: string; caption: string; href?: string; }
+const { src, alt = '', caption, href } = Astro.props;
 ---
-<figure class="screenshot">{src ? <Image src={src} alt={alt} width={960} height={540} loading="lazy" /> : <div class="caption">{caption}</div>}</figure>{src && <div class="caption">{caption}</div>}
+{href ? (
+  <a class="screenshot-link" href={href} aria-label={`Open ${caption}`}>
+    <figure class="screenshot">{src ? <Image src={src} alt={alt} width={960} height={540} loading="lazy" /> : <div class="caption">{caption}</div>}</figure>
+  </a>
+) : (
+  <div class="screenshot-link">
+    <figure class="screenshot">{src ? <Image src={src} alt={alt} width={960} height={540} loading="lazy" /> : <div class="caption">{caption}</div>}</figure>
+  </div>
+)}
+{src && <div class="caption">{caption}</div>}
