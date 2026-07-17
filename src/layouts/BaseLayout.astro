@@ -7,7 +7,7 @@ const canonical = new URL(path, site.url).toString();
 const pageTitle = title === site.name ? `${site.name} — ${site.shortName}` : `${title} — ${site.name}`;
 const imageUrl = new URL(image, site.url).toString();
 const current = '/' + (path.split('/').filter(Boolean)[0] ?? '');
-const nav = [{href:'/builds',label:'builds'},{href:'/agents',label:'agents'},{href:'/writing',label:'writing'},{href:'/feed',label:'feed'},{href:'/about',label:'about'}];
+const nav = [{href:'/builds',label:'builds'},{href:'/agents',label:'agents'},{href:'/writing',label:'writing'},{href:'/about',label:'about'}];
 ---
 <!doctype html><html lang="en"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{pageTitle}</title><meta name="description" content={description} /><link rel="canonical" href={canonical} />
