@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://beru.be',
+  site: 'https://berube.co',
   output: 'static',
   integrations: [sitemap()],
   markdown: {
