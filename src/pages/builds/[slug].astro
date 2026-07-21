@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 const { build, index } = Astro.props;
 const { Content } = await render(build);
 ---
-<BaseLayout title={build.data.name} description={build.data.summary} path={`/builds/${build.id}/`} image={ogFor(`builds-${build.id}`)}>
+<BaseLayout title={build.data.pageTitle ?? build.data.name} description={build.data.summary} path={`/builds/${build.id}/`} image={ogFor(`builds-${build.id}`)}>
   <article>
     <div class="article-grid">
       <div class="gutter">
@@ -24,7 +24,7 @@ const { Content } = await render(build);
       </div>
 
       <div>
-        <h1>{build.data.name}</h1>
+        <h1>{build.data.pageTitle ?? build.data.name}</h1>
         <p class="stack">{stackLine(build.data.stack)}</p>
         <p class="lede">{build.data.summary}</p>
         {build.data.url && (

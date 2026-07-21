@@ -15,6 +15,7 @@ const writing = defineCollection({
 
 const projectSchema = ({ image }: { image: () => any }) => z.object({
   name: z.string(),
+  pageTitle: z.string().optional(),
   summary: z.string(),
   date: z.coerce.date(),
   updated: z.coerce.date().optional(),
