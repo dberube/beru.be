@@ -8,7 +8,7 @@ await fs.rm(outDir, { recursive: true, force: true });
 await fs.mkdir(outDir, { recursive: true });
 
 const pages = [
-  ['site', 'Commercial product leader who builds.'],
+  ['site', 'Enterprise product leader. Builder at startup speed.'],
   ['writing', 'Writing.'],
   ['builds', 'Builds.'],
   ['agents', 'Agents.'],
