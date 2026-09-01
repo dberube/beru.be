@@ -11,10 +11,8 @@ screenshot: "../../assets/screenshots/federalists.png"
 draft: false
 ---
 
-*The Great Debate*
+*The Great Debate* started as a family project. My two daughters and I are big *Hamilton* fans, and we keep coming back to the strange, messy fight over the Constitution.
 
-An interactive history of the ratification debate: the original arguments for and against the Constitution, paired with plain-English context and organized as twelve head-to-head exchanges.
+I studied political science, so I was probably always going to get pulled into arguments between Brutus and Madison. We built this site because we wanted to read the original debates together, not just the famous quotes, and then talk about which side made the better case.
 
-My two daughters and I love *Hamilton* and share a deep fascination with American history. I trained as a political scientist, so the fight over ratification has always been more than background material to me: it is a living argument about power, representation, rights, and the kind of country we want to build.
-
-We built *Federalists.net* together as a way to explore that argument—reading the source material, comparing the competing cases, and making room for our own questions along the way. It is an ongoing family project, and we will keep adding to it as our conversations and curiosity take us further.
+It is still a work in progress. Every good conversation seems to give us another idea for it.
