@@ -15,6 +15,9 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 const slug = entry.id.replace('archive/', '');
 const title = entry.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) + '.';
+const otherEntries = (await getLiveCollection('now'))
+  .filter((candidate) => candidate.id !== entry.id)
+  .sort((a, b) => b.data.updated.valueOf() - a.data.updated.valueOf());
 ---
 <BaseLayout title={title} description="Archived now entry by David Berube." path={`/now/${slug}/`} image={ogFor(`now-${slug}`)}>
   <article>
@@ -28,5 +31,28 @@ const title = entry.data.updated.toLocaleDateString('en-US', { month: 'long', ye
     <p class="lede" style="color:var(--muted)">
       now page / last updated <time datetime={isoDate(entry.data.updated)}>{isoDate(entry.data.updated)}</time>
     </p>
+
+    {otherEntries.length > 0 && (
+      <section class="section">
+        {otherEntries.map((candidate) => {
+          const candidateSlug = candidate.id.replace('archive/', '');
+          const candidateTitle = candidate.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' }) + '.';
+          const isCurrent = candidate.id === 'current';
+          const href = isCurrent ? '/now/' : `/now/${candidateSlug}/`;
+          return (
+            <a class="list-row" href={href}>
+              <div class="gutter">
+                <strong>{isCurrent ? 'NOW' : candidateSlug.slice(0, 4)}</strong>
+                <time datetime={isoDate(candidate.data.updated)}>{isCurrent ? 'current' : candidateSlug}</time>
+              </div>
+              <div>
+                <h2 class="entry-title">{candidateTitle}</h2>
+                <p class="entry-desc">{isCurrent ? 'Current now entry.' : 'Archived now entry.'}</p>
+              </div>
+            </a>
+          );
+        })}
+      </section>
+    )}
   </article>
 </BaseLayout>
