@@ -1,16 +1,15 @@
 ---
-updated: 2026-08-13
+updated: 2026-09-20
 ---
 
-**Chasing dropping domains.** I’m building a system that spots good domains right before they expire. It parses the daily pending-delete lists, filters out the junk, and surfaces the few actually worth grabbing. The domain name world is a weird little corner of the internet that I've been playing in ever since I bought my first domain back in 1997!
+**A year of eating better.** It’s been about a year since I made a real effort to change how I eat, and I’ve lost more than 55 pounds. I’m now well within a healthy BMI and feel great. Along the way I cobbled together my own system using a few different apps and AI to help me make better choices and track what I was eating. What gets measured gets managed, and having that feedback along the way made a big difference for me.
 
-**Running my own domain parking system.** I got tired of ugly parked pages, so I built my own setup. Custom nameservers, one clean for-sale page, no per-domain config. Point a domain at my nameservers and it just works. It’s handling hundreds of domains in my portfolio right now.
+This month I started turning that workflow into [MacroMigo](/builds/macromigo/), an app that brings it all into one simple experience. The goal is to make it easier to understand what you’re eating, make better choices, and keep track of where you stand without making the whole thing feel like work. Basically, I’m building the app I wish I had a year ago.
 
-**Still working on [Turn Left](/builds/turnleft/).** My top-down NASCAR-style browser game. Chunky pixels, instant play, no app store. Every week it gets a little tighter.
+Over the last month, I’ve transitioned away from relying on Hermes and OpenClaw agents for most of my development work and moved primarily to Claude Code running on dedicated hardware. I have dedicated servers I can access remotely from my phone, so I can build, test, and deploy from pretty much anywhere at any time. So far it’s a much simpler setup and it’s been really effective for how I like to work. Things are changing so fast though, so we’ll see where this goes.
 
+My younger brother got married this month. He’s my only brother, so it was a pretty big family milestone. It was a great night. I’m super excited and happy for him and my new sister-in-law!
 
-**Continuing to build my agentic AI team.** This is what makes everything above possible. I have AI agents doing real engineering work. I write the specs, they ship the code, and I keep growing what the team can take on. The newest additions are [Parker](/agents/parker/), a product manager agent, and [Reed](/agents/reed/), who handles copywriting and social media. They’re not as hands-off as my engineering agents yet. Still a work in progress, but that’s the fun part.
+Otherwise, I’m continuing to explore ideas and really enjoying this moment in time as a builder.
 
-**Cape Cod.** Spent a few days in Chatham and Yarmouth with my two daughters. Beach, sea food, shopping, ice cream, no agenda. Best part of the month.
-
-![Me and my two daughters on a pier in Chatham, Cape Cod, with boats out on the water behind us.](../../assets/photos/cape-cod-2026.png)
+![Me and my daughters at my younger brother's wedding.](../../assets/photos/wedding-2026.png)
