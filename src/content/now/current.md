@@ -10,6 +10,6 @@ updated: 2026-09-20
 
 **Still exploring.** Otherwise, I’m continuing to explore ideas and really enjoying this moment in time as a builder.
 
-**My brother’s wedding.** My younger brother got married this month. He’s my only brother, so it was a pretty big family milestone. It was a great night. I’m super excited and happy for him and my new sister-in-law!
+**My brother’s wedding.** My youngest and only brother got married. It was a great night. I’m super excited and happy for him and my new sister-in-law!
 
 ![Me and my daughters at my younger brother's wedding.](../../assets/photos/wedding-2026.png)
