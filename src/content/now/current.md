@@ -8,8 +8,8 @@ updated: 2026-09-20
 
 **A new development setup.** Over the last month, I’ve transitioned away from relying on Hermes and OpenClaw agents for most of my development work and moved primarily to Claude Code running on dedicated hardware. I have dedicated servers I can access remotely from my phone, so I can build, test, and deploy from pretty much anywhere at any time. So far it’s a much simpler setup and it’s been really effective for how I like to work. Things are changing so fast though, so we’ll see where this goes.
 
-**My brother’s wedding.** My younger brother got married this month. He’s my only brother, so it was a pretty big family milestone. It was a great night. I’m super excited and happy for him and my new sister-in-law!
-
 **Still exploring.** Otherwise, I’m continuing to explore ideas and really enjoying this moment in time as a builder.
+
+**My brother’s wedding.** My younger brother got married this month. He’s my only brother, so it was a pretty big family milestone. It was a great night. I’m super excited and happy for him and my new sister-in-law!
 
 ![Me and my daughters at my younger brother's wedding.](../../assets/photos/wedding-2026.png)
