@@ -13,25 +13,26 @@ const [builds, agents, writing] = await Promise.all([
 const items = [
   ...builds.map((e) => ({
     entry: e,
+    category: 'builds',
     type: 'BUILD',
     title: e.data.name,
     href: hasBody(e) ? `/builds/${e.id}/` : e.data.url ?? `/builds/${e.id}/`
   })),
   ...agents.map((e) => ({
     entry: e,
+    category: 'agents',
     type: 'AGENT',
     title: e.data.name,
     href: hasBody(e) ? `/agents/${e.id}/` : e.data.url ?? `/agents/${e.id}/`
   })),
   ...writing.map((e) => ({
     entry: e,
+    category: 'writing',
     type: 'ESSAY',
     title: e.data.title,
     href: `/writing/${e.id}/`
   }))
-]
-  .sort((a, b) => byFreshnessDesc(a.entry, b.entry))
-  .slice(0, 5);
+].sort((a, b) => byFreshnessDesc(a.entry, b.entry));
 ---
 <BaseLayout title="Homepage" path="/" image="/og/site.png">
   <section class="home">
@@ -44,18 +45,58 @@ const items = [
 
     <p class="serif-lede">Earlier in my career, I founded, raised, and sold companies. Nights and weekends I ship my own projects: apps, sites, tools, AI experiments, and a team of agents that build with me.</p>
 
-    <div class="section">
+    <div class="feed-filter" aria-label="Filter the latest items">
+      <span class="kicker">Latest</span>
+      <div class="feed-filter-options" role="group" aria-label="Content type">
+        <button type="button" data-filter="all" aria-pressed="true">all</button>
+        <button type="button" data-filter="builds" aria-pressed="false">builds</button>
+        <button type="button" data-filter="agents" aria-pressed="false">agents</button>
+        <button type="button" data-filter="writing" aria-pressed="false">writing</button>
+      </div>
+    </div>
+
+    <div class="section" data-latest-items>
       {items.map((item, i) => (
-        <IndexedRow
-          number={number(i)}
-          meta={item.type}
-          title={item.title}
-          summary={item.entry.data.summary}
-          href={item.href}
-          arrow
-        />
+        <div data-latest-item data-category={item.category} hidden={i >= 5}>
+          <IndexedRow
+            number={number(i)}
+            meta={item.type}
+            title={item.title}
+            summary={item.entry.data.summary}
+            href={item.href}
+            arrow
+          />
+        </div>
       ))}
     </div>
+
+    <script>
+      const filters = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+      const latestItems = document.querySelectorAll<HTMLElement>('[data-latest-item]');
+
+      filters.forEach((filter) => {
+        filter.addEventListener('click', () => {
+          const category = filter.dataset.filter;
+          let visible = 0;
+
+          latestItems.forEach((item) => {
+            const matches = category === 'all' || item.dataset.category === category;
+            item.hidden = !matches || visible >= 5;
+            if (matches) {
+              if (visible < 5) {
+                const itemNumber = item.querySelector<HTMLElement>('.gutter strong');
+                if (itemNumber) itemNumber.textContent = String(visible + 1).padStart(3, '0');
+              }
+              visible += 1;
+            }
+          });
+
+          filters.forEach((button) => {
+            button.setAttribute('aria-pressed', String(button === filter));
+          });
+        });
+      });
+    </script>
 
     <div class="cta">
       <div class="cta-left">
