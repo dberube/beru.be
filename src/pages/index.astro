@@ -4,10 +4,11 @@ import IndexedRow from '../components/IndexedRow.astro';
 import { getLiveCollection, byFreshnessDesc, number, hasBody } from '../lib/content';
 import { site } from '../site';
 
-const [builds, agents, writing] = await Promise.all([
+const [builds, agents, writing, now] = await Promise.all([
   getLiveCollection('builds'),
   getLiveCollection('agents'),
-  getLiveCollection('writing')
+  getLiveCollection('writing'),
+  getLiveCollection('now')
 ]);
 
 const items = [
@@ -16,6 +17,7 @@ const items = [
     category: 'builds',
     type: 'BUILD',
     title: e.data.name,
+    summary: e.data.summary,
     href: hasBody(e) ? `/builds/${e.id}/` : e.data.url ?? `/builds/${e.id}/`
   })),
   ...agents.map((e) => ({
@@ -23,6 +25,7 @@ const items = [
     category: 'agents',
     type: 'AGENT',
     title: e.data.name,
+    summary: e.data.summary,
     href: hasBody(e) ? `/agents/${e.id}/` : e.data.url ?? `/agents/${e.id}/`
   })),
   ...writing.map((e) => ({
@@ -30,8 +33,21 @@ const items = [
     category: 'writing',
     type: 'ESSAY',
     title: e.data.title,
+    summary: e.data.summary,
     href: `/writing/${e.id}/`
-  }))
+  })),
+  ...now.map((e) => {
+    const title = `Now: ${e.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`;
+    const href = e.id === 'current' ? '/now/' : `/now/${e.id.replace('archive/', '')}/`;
+    return {
+      entry: e,
+      category: 'writing',
+      type: 'NOW',
+      title,
+      summary: 'A monthly journal of what I’m focused on.',
+      href
+    };
+  })
 ].sort((a, b) => byFreshnessDesc(a.entry, b.entry));
 ---
 <BaseLayout title="Homepage" path="/" image="/og/site.png">
@@ -62,7 +78,7 @@ const items = [
             number={number(i)}
             meta={item.type}
             title={item.title}
-            summary={item.entry.data.summary}
+            summary={item.summary}
             href={item.href}
             arrow
           />

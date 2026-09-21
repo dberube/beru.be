@@ -1,21 +1,38 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import IndexedRow from '../../components/IndexedRow.astro';
-import { getLiveCollection, number, shortDate } from '../../lib/content';
-const essays = await getLiveCollection('writing');
+import { getLiveCollection, byFreshnessDesc, number, shortDate } from '../../lib/content';
+const [essays, now] = await Promise.all([
+  getLiveCollection('writing'),
+  getLiveCollection('now')
+]);
+const entries = [
+  ...essays.map((entry) => ({
+    entry,
+    title: entry.data.title,
+    summary: entry.data.summary,
+    href: `/writing/${entry.id}/`
+  })),
+  ...now.map((entry) => ({
+    entry,
+    title: `Now: ${entry.data.updated.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`,
+    summary: 'A monthly journal of what I’m focused on.',
+    href: entry.id === 'current' ? '/now/' : `/now/${entry.id.replace('archive/', '')}/`
+  }))
+].sort((a, b) => byFreshnessDesc(a.entry, b.entry));
 ---
 <BaseLayout title="Writing" description="What I’ve learned building products, leading teams, and trying new things" path="/writing/" image="/og/writing.png">
   <h1>Writing.</h1>
   <p class="serif-lede">What I’ve learned building products, leading teams, and trying new things before the playbook exists.</p>
 
   <section class="section">
-    {essays.map((essay, i) => (
+    {entries.map(({ entry, title, summary, href }, i) => (
       <IndexedRow
         number={number(i)}
-        meta={shortDate(essay.data.date)}
-        title={essay.data.title}
-        summary={essay.data.summary}
-        href={`/writing/${essay.id}/`}
+        meta={shortDate(entry.data.updated ?? entry.data.date)}
+        title={title}
+        summary={summary}
+        href={href}
       />
     ))}
   </section>
